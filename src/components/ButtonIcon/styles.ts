@@ -16,13 +16,14 @@ export const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 		borderRightWidth: 1,
-		borderColor: theme.colors.primaryDark,
+		borderColor: theme.colors.line,
 	},
 	title: {
 		flex: 1,
 		color: theme.colors.heading,
 		fontSize: 15,
 		textAlign: 'center',
+		fontFamily: theme.fonts.text500,
 	},
 	icon: {
 
