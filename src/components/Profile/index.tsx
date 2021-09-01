@@ -10,7 +10,7 @@ export function Profile() {
     <View style={styles.container}>
       <Avatar urlImage="https://github.com/EduardoAlphonse.png" />
 
-      <View>
+      <View style={styles.content}>
         <View style={styles.user}>
           <Text style={styles.greeting}>Olá, </Text>
           <Text style={styles.username}>Eduardo</Text>

@@ -7,7 +7,6 @@ export const styles = StyleSheet.create({
     borderRadius: 8,
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: 20,
   },
   image: {
     width: 46,

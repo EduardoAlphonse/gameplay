@@ -1,1 +1,2 @@
 - nome do jogo no componente de compromisso, "Appointment"
+- melhor alinhamento no estilo do componente Header
