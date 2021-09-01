@@ -5,6 +5,7 @@ import { ButtonAdd } from '../../components/ButtonAdd';
 import { CategorySelect } from '../../components/CategorySelect';
 import { Divider } from '../../components/Divider';
 import { ListHeader } from '../../components/ListHeader';
+import { Background } from '../../components/Background';
 
 import { Profile } from '../../components/Profile';
 
@@ -48,7 +49,7 @@ export function Home() {
   ];
 
   return (
-    <View style={styles.container}>
+    <Background>
       <View style={styles.header}>
         <Profile />
         <ButtonAdd />
@@ -61,7 +62,7 @@ export function Home() {
         />
 
         <View style={styles.content}>
-          <ListHeader title="Partidas agendadas" subtitle="Total 6" />
+          <ListHeader title="Partidas agendadas" subtitle="Total 2" />
 
           <FlatList
             data={appointments}
@@ -72,6 +73,6 @@ export function Home() {
           />
         </View>
       </View>
-    </View>
+    </Background>
   );
 }

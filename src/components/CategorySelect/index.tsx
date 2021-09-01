@@ -7,11 +7,13 @@ import { styles } from './styles';
 
 type CategorySelectProps = {
   selectedCategory: string;
+  hasCheckBox?: boolean;
   handleCategorySelect: (categoryId: string) => void;
 };
 
 export function CategorySelect({
   selectedCategory,
+  hasCheckBox,
   handleCategorySelect,
 }: CategorySelectProps) {
   return (
@@ -28,6 +30,7 @@ export function CategorySelect({
           title={title}
           checked={id === selectedCategory}
           onPress={() => handleCategorySelect(id)}
+          hasCheckBox={hasCheckBox}
         />
       ))}
     </ScrollView>

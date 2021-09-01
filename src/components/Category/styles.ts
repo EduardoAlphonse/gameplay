@@ -13,7 +13,6 @@ export const styles = StyleSheet.create({
   content: {
     width: 100,
     height: 116,
-    backgroundColor: theme.colors.secondary40,
     borderRadius: 8,
     justifyContent: 'center',
     alignItems: 'center',
@@ -34,7 +33,7 @@ export const styles = StyleSheet.create({
     backgroundColor: theme.colors.secondary100,
   },
   title: {
-    fontFamily: theme.fonts.title500,
+    fontFamily: theme.fonts.title700,
     color: theme.colors.heading,
     fontSize: 15,
     marginTop: 16,
