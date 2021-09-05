@@ -3,21 +3,25 @@ import { theme } from '../../global/styles/theme';
 
 export const styles = StyleSheet.create({
   container: {
-    marginBottom: 24,
-  },
-  header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    paddingRight: 20,
+    overflow: 'hidden',
   },
-  title: {
+  guild: {
+    flex: 1,
+    marginLeft: 20,
+  },
+  label: {
     fontFamily: theme.fonts.title700,
-    color: theme.colors.heading,
     fontSize: 18,
+    color: theme.colors.heading,
   },
-  subtitle: {
-    fontFamily: theme.fonts.title700,
-    color: theme.colors.highlight,
+  game: {
+    fontFamily: theme.fonts.text400,
     fontSize: 13,
+    color: theme.colors.highlight,
+    marginTop: 4,
   },
 });
