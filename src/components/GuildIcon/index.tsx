@@ -3,9 +3,12 @@ import { Image } from 'react-native';
 
 import { styles } from './styles';
 
-export function GuildIcon() {
-  const uri =
-    'https://www.freeiconspng.com/thumbs/discord-icon/discord-metro-style-icon-0.png';
+type GuildIconProps = {
+  icon: string;
+};
 
-  return <Image style={styles.image} source={{ uri }} resizeMode="cover" />;
+export function GuildIcon({ icon }: GuildIconProps) {
+  return (
+    <Image style={styles.image} source={{ uri: icon }} resizeMode="cover" />
+  );
 }

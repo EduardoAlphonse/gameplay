@@ -43,7 +43,7 @@ export function AppointmentDetails() {
       </ImageBackground>
 
       <View style={{ marginTop: 24 }}>
-        <ListHeader title="Jogadores" subtitle="Total 2" />
+        <ListHeader title="Jogadores" subtitle="Total 2" style={{ marginHorizontal: 24 }} />
       </View>
 
       <FlatList

@@ -34,7 +34,7 @@ export function AppointmentCreate() {
   const [isGuildsModalVisible, setIsGuildsModalVisible] = useState(false);
 
   function handleCategorySelect(categoryId: string) {
-    categoryId === category ? setCategory('') : setCategory(categoryId);
+    setCategory(categoryId);
   }
 
   function toggleGuildsModal() {
@@ -47,13 +47,13 @@ export function AppointmentCreate() {
   }
 
   return (
-    <Background>
-      <KeyboardAvoidingView
-        style={styles.container}
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      >
-        <Header title="Agendar partida" />
-        <ScrollView>
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    >
+      <Header title="Agendar partida" />
+      <ScrollView>
+        <Background>
           <View style={{ marginTop: 24 }}>
             <ListHeader title="Categoria" style={{ marginLeft: 24 }} />
 
@@ -69,7 +69,7 @@ export function AppointmentCreate() {
               <View style={styles.selectButtonContainer}>
                 {selectedGuild.name ? (
                   <>
-                    <GuildIcon />
+                    <GuildIcon icon={selectedGuild.icon} />
                     <View style={styles.guild}>
                       <Text style={styles.label}>{selectedGuild.name}</Text>
                     </View>
@@ -124,15 +124,16 @@ export function AppointmentCreate() {
           <View style={styles.footer}>
             <Button title="Agendar" />
           </View>
-        </ScrollView>
+        </Background>
+      </ScrollView>
 
-        <ModalView
-          visible={isGuildsModalVisible}
-          onRequestClose={toggleGuildsModal}
-        >
-          <Guilds handleGuildSelect={handleGuildSelect} />
-        </ModalView>
-      </KeyboardAvoidingView>
-    </Background>
+      <ModalView
+        visible={isGuildsModalVisible}
+        onRequestClose={toggleGuildsModal}
+        closeModal={toggleGuildsModal}
+      >
+        <Guilds handleGuildSelect={handleGuildSelect} />
+      </ModalView>
+    </KeyboardAvoidingView>
   );
 }

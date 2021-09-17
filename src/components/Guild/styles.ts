@@ -8,6 +8,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     paddingRight: 20,
     overflow: 'hidden',
+    paddingVertical: 16,
   },
   guild: {
     flex: 1,
