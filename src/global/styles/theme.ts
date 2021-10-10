@@ -20,6 +20,8 @@ export const theme = {
     online: '#32BD50',
     busy: '#D07622',
     unavailable: '#E51C44',
+
+    discord: '#7289da',
   },
 
   fonts: {

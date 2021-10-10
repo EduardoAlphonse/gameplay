@@ -9,6 +9,9 @@ import {
 import { RectButton } from 'react-native-gesture-handler';
 import { Feather } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
+import uuid from 'react-native-uuid';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation } from '@react-navigation/native';
 
 import { Background } from '../../components/Background';
 import { Header } from '../../components/Header';
@@ -20,6 +23,7 @@ import { Textarea } from '../../components/Textarea';
 import { Button } from '../../components/Button';
 import { ModalView } from '../../components/ModalView';
 import { Guilds } from '../../components/Guilds';
+import { COLLECTION_APPOINTMENTS } from '../../config/database';
 
 import { GuildDataProps } from '../../components/Guild';
 
@@ -33,6 +37,14 @@ export function AppointmentCreate() {
   );
   const [isGuildsModalVisible, setIsGuildsModalVisible] = useState(false);
 
+  const [day, setDay] = useState('');
+  const [month, setMonth] = useState('');
+  const [hour, setHour] = useState('');
+  const [minute, setMinute] = useState('');
+  const [description, setDescription] = useState('');
+
+  const navigation = useNavigation();
+
   function handleCategorySelect(categoryId: string) {
     setCategory(categoryId);
   }
@@ -44,6 +56,26 @@ export function AppointmentCreate() {
   function handleGuildSelect(guildSelect: GuildDataProps) {
     setSelectedGuild(guildSelect);
     toggleGuildsModal();
+  }
+
+  async function handleSave() {
+    const newAppointment = {
+      id: uuid.v4(),
+      guild: selectedGuild,
+      category,
+      date: `${day}/${month} às ${hour}:${minute}h`,
+      description,
+    };
+
+    const storage = await AsyncStorage.getItem(COLLECTION_APPOINTMENTS);
+    const appointments = storage ? JSON.parse(storage) : [];
+
+    await AsyncStorage.setItem(
+      COLLECTION_APPOINTMENTS,
+      JSON.stringify([...appointments, newAppointment])
+    );
+
+    navigation.navigate('Home');
   }
 
   return (
@@ -69,7 +101,10 @@ export function AppointmentCreate() {
               <View style={styles.selectButtonContainer}>
                 {selectedGuild.name ? (
                   <>
-                    <GuildIcon icon={selectedGuild.icon} />
+                    <GuildIcon
+                      guildId={selectedGuild.id}
+                      iconId={selectedGuild.icon}
+                    />
                     <View style={styles.guild}>
                       <Text style={styles.label}>{selectedGuild.name}</Text>
                     </View>
@@ -99,18 +134,18 @@ export function AppointmentCreate() {
               <View style={styles.inputsContainer}>
                 <ListHeader title="Dia e mês" />
                 <View style={styles.inputs}>
-                  <SmallInput />
+                  <SmallInput maxLength={2} onChangeText={setDay} />
                   <Text style={styles.inputSeparator}>/</Text>
-                  <SmallInput />
+                  <SmallInput maxLength={2} onChangeText={setMonth} />
                 </View>
               </View>
 
               <View style={styles.inputsContainer}>
                 <ListHeader title="Hora" />
                 <View style={styles.inputs}>
-                  <SmallInput />
+                  <SmallInput maxLength={2} onChangeText={setHour} />
                   <Text style={styles.inputSeparator}>:</Text>
-                  <SmallInput />
+                  <SmallInput maxLength={2} onChangeText={setMinute} />
                 </View>
               </View>
             </View>
@@ -118,11 +153,11 @@ export function AppointmentCreate() {
             <View style={styles.description}>
               <ListHeader title="Descrição" subtitle="Max 100 caracteres" />
 
-              <Textarea />
+              <Textarea onChangeText={setDescription} />
             </View>
           </View>
           <View style={styles.footer}>
-            <Button title="Agendar" />
+            <Button title="Agendar" onPress={handleSave} />
           </View>
         </Background>
       </ScrollView>

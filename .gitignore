@@ -9,8 +9,8 @@ npm-debug.*
 *.orig.*
 web-build/
 
-# config
-discordAuth.ts
+# ENVIRONMENT
+.env
 
 # macOS
 .DS_Store

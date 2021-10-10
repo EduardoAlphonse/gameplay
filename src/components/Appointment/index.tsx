@@ -13,7 +13,7 @@ import { theme } from '../../global/styles/theme';
 import { categories } from '../../utils/categories';
 
 export type GuildType = {
-  // id: string;
+  id: string;
   name: string;
   icon: string;
   owner: boolean;
@@ -46,7 +46,7 @@ export function Appointment({ data, ...rest }: AppointmentProps) {
           style={styles.guildIconContainer}
           colors={[secondary30, secondary35]}
         >
-          <GuildIcon icon={data.guild.icon} />
+          <GuildIcon guildId={data.guild.id} iconId={data.guild.icon} />
         </LinearGradient>
         <View style={styles.content}>
           <View style={styles.header}>
